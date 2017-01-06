@@ -1,2 +1,0 @@
-# jokefinal
-joke for firends

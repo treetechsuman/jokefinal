@@ -6,6 +6,11 @@
           </a>
         </li> 
         <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/create-joke']" >
+            Add new Joke
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
           <a [routerLink]="['/contact']">
             Contact
           </a>
@@ -13,14 +18,14 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
-        <li>
-          <a >
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/signup']">
             <span class="glyphicon glyphicon-user"></span>
             Sign Up
           </a>
         </li>
-        <li >
-          <a >
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/login']">
             <span class="glyphicon glyphicon-log-in"></span>
             Login
           </a>
@@ -35,8 +40,8 @@
               <li><a href="#">Profile</a></li>
               <li><a href="#">Change</a></li>
               <li><a href="#">My Jokes</a></li>
-              <li><a >User List</a></li>
-              <li><a >LogOut</a></li>
+              <li><a [routerLink]="['/users']">User List</a></li>
+              <li><a (click)="logout()">LogOut</a></li>
             </ul>
         </li>
       </ul>

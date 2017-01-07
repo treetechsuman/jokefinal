@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule }   from '@angular/router';
+import { Router }   from '@angular/router';
+import {NgForm } from '@angular/forms';
+
+
+
+import  './../../rxjs-operators';
+import {Joke} from './../../model/joke';
+import { JokeService } from './../../services/joke.service';
 
 @Component({
   selector: 'app-create-joke',
@@ -7,9 +16,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateJokeComponent implements OnInit {
 
-  constructor() { }
+ jokes:Joke[]=[];
+	joke:Joke;
+	mode = 'Observable';
+	errorMessage:String;
+	constructor(
+		private jokeService: JokeService,
+		private router: Router
+		){}
 
-  ngOnInit() {
+	ngOnInit() {
+    	this.joke = new Joke();
+  	}
+	store(form: NgForm) {
+		
+		//this.joke.id = 22;
+		this.joke.title = form.value.title;
+		this.joke.content = form.value.content;
+		this.joke.by = form.value.by;
+		this.joke.like = 0;
+		this.joke.disLike = 0;
+
+		
+    if (!form.value.title) { return; }
+    this.jokeService.create(this.joke)
+    .subscribe(
+      joke  => this.jokes.push(joke),
+      error =>  this.errorMessage = <any>error);
+      //console.log(form.value.title);
+      this.router.navigate(['/joke']);
   }
+	
 
 }
